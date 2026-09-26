@@ -360,7 +360,7 @@ extension Backtrace {
   /// - Note: The underlying Foundation function is called (if present) the
   ///   first time the value of this property is read.
   static let isFoundationCaptureEnabled = {
-#if !hasFeature(Embedded) && _runtime(_ObjC) && !SWT_NO_DYNAMIC_LINKING
+#if !hasFeature(Embedded) && SWT_TARGET_OS_APPLE && !SWT_NO_DYNAMIC_LINKING
     // Check the environment variable; if it isn't set, enable if and only if
     // the Core Foundation getter function is implemented.
     let foundationBacktracesEnabled = Environment.flag(named: "SWT_FOUNDATION_ERROR_BACKTRACING_ENABLED")
